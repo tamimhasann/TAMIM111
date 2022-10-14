@@ -1,0 +1,60 @@
+<html>
+
+<body style="background: rgb(34, 128, 195);
+background: linear-gradient(257deg, rgba(20, 179, 204, 0.986) 0%, rgba(37,72,176,1) 42%, rgba(45,210,253,1) 100%); color: white;">
+<style>
+    .button {
+    display: block;
+    width: auto;
+    height: auto;
+    font-size: 50%;
+    background: #eeeeee;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    line-height: 25px;
+}
+a {
+  text-decoration: none !important;
+}
+@media only screen and (max-width: 1000px) {
+ .button{
+    margin-top: 20%;
+ }
+.container-fluid{
+    font-size: 50%;
+}
+}
+</style>
+
+    <center>
+        <a href='/' class="button" style="font-size: 2rem;">BACK</a>
+    
+        <div class="container-fluid" style="font-size: 2.5rem;">
+
+            <h1 style="margin-top: 1%;" >  PREDICTION  </h1>        
+            {%if data == 0%}
+            <h2 style="color: rgb(255, 255, 255);">Not Heart Disease</h2>  
+            <img src='static\setosa.png' style="width: 350px; height: 300px;">  
+        
+            {%else%}
+            <h2 style="color: rgb(255, 255, 255);">Heart Disease</h2>
+            <img src='static\verci.jpg' style="width: 350px; height: 300px;">
+            
+            {%endif%}
+          </div>
+
+    </center>
+
+
+</body>
+
+</html>
+
+
+
+
+
+

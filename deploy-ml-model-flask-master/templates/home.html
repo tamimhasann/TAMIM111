@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Stylesheets-->
+    <style media="screen">
+body{
+color: #ffffff;
+
+}
+.popup{
+background: #ED213A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;
+    color: #ffffff;
+}
+.popup button{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+    background: #0575E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.popup h2{
+  margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+.mb-3{
+    width: 400px;
+}
+.btn{
+    width: 20%;
+    margin-bottom: 10%;
+}
+
+    </style>
+</head>
+  <body style="background: rgb(34, 128, 195);
+  background: linear-gradient(257deg, rgba(20, 179, 204, 0.986) 0%, rgba(37,72,176,1) 42%, rgba(45,210,253,1) 100%);">
+   
+    <div class="popup border border-secondary">
+        <button id="close">&times;</button>
+        <h4>Heart Disease Detection</h2>
+        <p>
+            No personal data is being collected. This data will be used only for research purpose.
+        </p>
+        
+    </div>
+    <!-- As a heading -->
+   
+    <div class="nav justify-content-center">
+      <span class="navbar-brand mb-0 h1"> <h1> HEART DISEASE DETECTION </h1></span>
+    </div>
+
+    <center>
+        
+       <br>
+       
+       <!-- 
+<form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+        -->
+
+
+        <form method="POST" action="{{url_for('home')}}" class="needs-validation" novalidate>
+        <b> 
+            <div class="mb-3">
+                <label for="HighBloodPressure" class="form-label">High Blood Pressure ?</label>
+                <select class="form-select" name='HighBloodPressure' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose HighBloodPressure.
+                </div>
+            </div>
+            <br>
+       
+            <div class="mb-3">
+                <label for="HighCholesterol" class="form-label">High Cholesterol ?</label>
+                <select class="form-select" name='HighCholesterol' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+   
+            <div class="mb-3">
+                <label for="CheckCholesterolwithinpastfiveyears" class="form-label">Check Cholesterol within past five years ?</label>
+                <select class="form-select" name='CheckCholesterolwithinpastfiveyears' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+
+            <div class="mb-3">
+                <label for="BMI" class="form-label">Body Mass Index (BMI) ?</label>
+                <input type="text" class="form-control" name='BMI' placeholder="Enter your BMI" required>
+                <div class="invalid-feedback">
+                    Please give value.
+                </div>
+            </div>
+            <br>
+            
+            <!-- First value :  <input type="text", name='a', placeholder="enter 1"> <br><br>
+            Second value :  <input type="text", name='b', placeholder="enter 2"> <br><br>
+            Third value :  <input type="text", name='c', placeholder="enter 3"> <br><br>
+            Fourth value : <input type="text", name='d', placeholder="enter 4"> <br><br><br> -->
+            <div class="mb-3">
+                <label for="Smoker" class="form-label">Smoker ?</label>
+                <select class="form-select" name='Smoker' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+          
+            <div class="mb-3">
+                <label for="HaveaStroke" class="form-label">Ever have a Stroke ?</label>
+                <select class="form-select" name='HaveaStroke' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+            
+            <div class="mb-3">
+                <label for="Diabetes" class="form-label">Diabetes ?</label>
+                <select class="form-select" name='Diabetes' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="0">No Diabetes</option>
+                    <option value="1">Pre Diabetes</option>
+                    <option value="2">Diabetes</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+          
+            <div class="mb-3">
+                <label for="physicalactivity" class="form-label">Did you have any sort of physical activity or exercise during the past 30 days other than their regular job ?</label>
+                <select class="form-select" name='physicalactivity' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+            <!-- Fifth value :  <input type="text", name='e', placeholder="enter 5"> <br><br>
+            Sixth value :  <input type="text", name='f', placeholder="enter 6"> <br><br>
+            Seventh value :  <input type="text", name='g', placeholder="enter 7"> <br><br>
+            Eighth value : <input type="text", name='h', placeholder="enter 8"> <br><br><br> -->
+
+            
+            <div class="mb-3">
+                <label for="generalhealth" class="form-label">General Health ?</label>
+                <select class="form-select" name='generalhealth' aria-label="Default select example" required>
+               
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Excellent</option>
+                    <option value="2">Very Good</option>
+                    <option value="3">Good</option>
+                    <option value="4">Fair</option>
+                    <option value="5">Poor</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+       
+            <div class="mb-3">
+                <label for="difficultywalking" class="form-label">Serious difficulty in walking or climbing stairs ?</label>
+                <select class="form-select" name='difficultywalking' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+
+            <div class="mb-3">
+                <label for="Sex" class="form-label">Sex ?</label>
+                <select class="form-select" name='Sex' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+           
+            <div class="mb-3">
+                <label for="agecategory" class="form-label">Age category ?</label>
+                <select class="form-select" name='agecategory' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">18 to 24</option>
+                    <option value="2">25 to 29</option>
+                    <option value="3">30 to 34</option>
+                    <option value="4">35 to 39</option>
+    
+                    <option value="5">40 to 44</option>
+                    <option value="6">45 to 49</option>
+                    <option value="7">50 to 54</option>
+                    <option value="8">55 to 59</option>
+    
+                    <option value="9">60 to 64</option>
+                    <option value="10">65 to 69</option>
+                    <option value="11">70 to 74</option>
+                    <option value="12">75 to 79</option>
+    
+                    <option value="13">80 or older</option>  
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+
+         
+<!-- 
+            Ninth value :  <input type="text", name='i', placeholder="enter 9"> <br><br>
+            Tenth value :  <input type="text", name='j', placeholder="enter 10"> <br><br>
+            Eleventh value :  <input type="text", name='k', placeholder="enter 11"> <br><br>
+            Twelveth value : <input type="text", name='l', placeholder="enter 12"> <br><br><br> -->
+
+            <div class="mb-3">
+                <label for="grade" class="form-label">What is the highest grade or year of school you completed ?</label>
+                <select class="form-select" name='grade' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+          
+            <div class="mb-3">
+                <label for="income" class="form-label">Annual household income from all sources ?</label>
+                <select class="form-select" name='income' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">Less than $10,000</option>
+                    <option value="2">Less than $15,000 ($10,000 to less than $15,000)</option>
+                    <option value="3">Less than $20,000 ($15,000 to less than $20,000)</option>
+                    <option value="4">Less than $25,000 ($20,000 to less than $25,000)</option>
+                    <option value="5">Less than $35,000 ($25,000 to less than $35,000)</option>
+                    <option value="6">Less than $50,000 ($35,000 to less than $50,000</option>
+                    <option value="7">Less than $75,000 ($50,000 to less than $75,000)</option>
+                    <option value="8">$75,000 or more</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+
+
+            
+            <div class="mb-3">
+                <label for="mental" class="form-label">Now thinking about your mental health, which includes stress, depression, 
+                    and problems with emotions, for how many days during the past 30 days was your mental health not good ?</label>
+                <select class="form-select" name='mental' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+               
+                    <option value="1">0 Days </option>
+                    <option value="2">1-9 Days</option>
+                    <option value="3">10-19 Days</option>
+                    <option value="4">20-29 Days</option>
+                    <option value="5">More than 30 days</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+          
+            <div class="mb-3">
+                <label for="physical" class="form-label">Now thinking about your physical health, which includes physical illness
+                     and injury, for how many days during the past 30 days was your physical health not good? (0 to 30 days)</label>
+                <select class="form-select" name='physical' aria-label="Default select example" required>
+                    <option selected disabled value="">Open this select menu</option>
+                    <option value="1">0 Days </option>
+                    <option value="2">1-9 Days</option>
+                    <option value="3">10-19 Days</option>
+                    <option value="4">20-29 Days</option>
+                    <option value="5">More than 30 days</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please choose one.
+                </div>
+            </div>
+            <br>
+
+<!-- 
+            Thirteenth value :  <input type="text", name='m', placeholder="enter 13"> <br><br>
+            Fourteenth value :  <input type="text", name='n', placeholder="enter 14"> <br><br>
+            Fifteenth value :  <input type="text", name='o', placeholder="enter 15"> <br><br>
+            Sixteenth value : <input type="text", name='p', placeholder="enter 16"> <br><br><br> -->
+
+
+
+        
+        </b>
+            <input type="submit" class="btn btn-warning" value='predict!' >
+        </form>
+
+        
+    </center>
+    <!--Script-->
+    <script type="text/javascript">
+        window.addEventListener("load", function(){
+            setTimeout(
+                function open(event){
+                    document.querySelector(".popup").style.display = "block";
+                },
+                2000 
+            )
+        });
+        
+        
+        document.querySelector("#close").addEventListener("click", function(){
+            document.querySelector(".popup").style.display = "none";
+        });
+            </script>
+            <script>
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+            </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+  <!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+      
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+      © 2022 Copyright:
+      <a class="text-reset fw-bold">TAMIM HASAN | KOUSHIK BANDAPADYA</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</html>
